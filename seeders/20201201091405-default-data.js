@@ -5,9 +5,10 @@ const SEED_USER = {
   email: 'root@example.com',
   password: '12345678',
 };
+
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface
       .bulkInsert(
         'Users',
         [
@@ -38,8 +39,9 @@ module.exports = {
         )
       );
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface
       .bulkDelete('Todos', null, {})
       .then(() => queryInterface.bulkDelete('Users', null, {}));
   },
